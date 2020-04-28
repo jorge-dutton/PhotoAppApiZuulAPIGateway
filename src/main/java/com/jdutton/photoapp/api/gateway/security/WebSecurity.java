@@ -30,6 +30,10 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 		// made to the User Registration Service, the User Login Service or the
 		// H2 console.
 		http.authorizeRequests()
+				.antMatchers(env.getProperty("api.users.actuator.url.path"))
+				.permitAll()
+				.antMatchers(env.getProperty("api.zuul.actuator.url.path"))
+				.permitAll()
 				.antMatchers(env.getProperty("api.h2console.url.path"))
 				.permitAll()
 				.antMatchers(HttpMethod.POST,
